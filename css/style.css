@@ -571,3 +571,11 @@ a {
 .hero-media {
   animation: heroPan 18s linear infinite alternate;
 }
+@keyframes heroPan {
+  0%   { transform: scale(1) translateX(0); }
+  100% { transform: scale(1.15) translateX(-6%); }
+}
+
+.hero-media {
+  animation: heroPan 18s linear infinite alternate;
+}
