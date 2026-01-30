@@ -27,6 +27,28 @@
       }, 9000);
     });
 })();
+
+  const el = document.getElementById('typewriter');
+
+  el.textContent = '';
+
+  const timer = setInterval(() => {
+      clearInterval(timer);
+    }
+  }, 90);
+}
+
+
+  const el = document.getElementById('typewriter');
+
+  el.textContent = '';
+
+  const timer = setInterval(() => {
+      clearInterval(timer);
+    }
+  }, 90);
+}
+
 const TYPE_TEXT = 'BUILDING WORKS · ROAD WORKS · WATER WORKS';
 let typeIndex = 0;
 let typing = false;
@@ -50,28 +72,14 @@ function runTypewriter() {
 }
 
 document.addEventListener('DOMContentLoaded', runTypewriter);
-window.addEventListener('scroll', runTypewriter, { once: true });
-const TYPE_TEXT = 'BUILDING WORKS · ROAD WORKS · WATER WORKS';
-let typeIndex = 0;
-let typing = false;
+document.addEventListener('DOMContentLoaded', function () {
+  const hero = document.querySelector('.hero');
+  if (!hero || document.querySelector('.hero-media')) return;
 
-function runTypewriter() {
-  const el = document.getElementById('typewriter');
-  if (!el || typing) return;
+  const media = document.createElement('div');
+  media.className = 'hero-media';
+  media.style.backgroundImage =
+    'url(https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_1600/panama-works/road/panama_road_construction_17.jpg)';
 
-  typing = true;
-  el.textContent = '';
-  typeIndex = 0;
-
-  const timer = setInterval(() => {
-    el.textContent += TYPE_TEXT[typeIndex];
-    typeIndex++;
-    if (typeIndex >= TYPE_TEXT.length) {
-      clearInterval(timer);
-      typing = false;
-    }
-  }, 90);
-}
-
-document.addEventListener('DOMContentLoaded', runTypewriter);
-window.addEventListener('scroll', runTypewriter, { once: true });
+  hero.appendChild(media);
+});
