@@ -1,4 +1,4 @@
-const TYPE_TEXT = 'BUILDING WORKS  ROAD WORKS  WATER WORKS';
+const TYPE_TEXT = 'BUILDING WORKS &middot; ROAD WORKS &middot; WATER WORKS';
 
 document.addEventListener('DOMContentLoaded', async () => {
   // TYPEWRITER
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let i = 0;
     el.textContent = '';
     const timer = setInterval(() => {
-      el.textContent += TYPE_TEXT[i++];
+      el.innerHTML += TYPE_TEXT[i++];
       if (i === TYPE_TEXT.length) clearInterval(timer);
     }, 90);
   }
@@ -57,3 +57,4 @@ if (!window.__scrollRevealInitialized) {
     document.querySelectorAll('.animate').forEach(el => observer.observe(el));
   });
 }
+
