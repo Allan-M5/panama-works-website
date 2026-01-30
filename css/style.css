@@ -602,3 +602,7 @@ a {
   0%   { transform: scale(1) translateX(0); }
   100% { transform: scale(1.15) translateX(-6%); }
 }
+@keyframes heroPan {
+  0%   { transform: scale(1) translateX(0); }
+  100% { transform: scale(1.15) translateX(-6%); }
+}
