@@ -1,0 +1,21 @@
+{
+  "building": [
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/building/panama_building_construction_1.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/building/panama_building_construction_2.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/building/panama_building_construction_3.jpg"
+  ],
+  "road": [
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/road/panama_road_construction_1.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/road/panama_road_construction_2.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/road/panama_road_construction_3.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/road/panama_road_construction_4.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/road/panama_road_construction_5.jpg"
+  ],
+  "water": [
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/water/panama_sewer_works_1.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/water/panama_sewer_works_2.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/water/panama_facility_installation.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/water/panama_facility_installation1.jpg",
+    "https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_800/panama-works/water/panama_facility_installation2.jpg"
+  ]
+}

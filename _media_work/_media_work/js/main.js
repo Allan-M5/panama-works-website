@@ -62,29 +62,3 @@ const scrollObserver = new IntersectionObserver(
 animatedElements.forEach(el => {
   scrollObserver.observe(el);
 });
-const HERO_IMAGES = [
-  'https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_1200/panama-works/road/panama_road_construction_17.jpg',
-  'https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_1200/panama-works/building/panama_building_construction_3.jpg',
-  'https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_1200/panama-works/water/panama_sewer_works_2.jpg'
-];
-
-(function heroMedia(){
-  const hero = document.querySelector('.hero');
-  if(!hero) return;
-
-  const layer = document.createElement('div');
-  layer.className = 'hero-media';
-  hero.appendChild(layer);
-
-  let i = 0;
-  layer.style.backgroundImage = 'url(' + HERO_IMAGES[0] + ')';
-
-  setInterval(() => {
-    i = (i + 1) % HERO_IMAGES.length;
-    layer.style.opacity = 0;
-    setTimeout(() => {
-      layer.style.backgroundImage = 'url(' + HERO_IMAGES[i] + ')';
-      layer.style.opacity = 0.6;
-    }, 600);
-  }, 7000);
-})();

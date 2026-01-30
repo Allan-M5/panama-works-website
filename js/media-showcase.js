@@ -1,52 +1,42 @@
-let idleTimers = new WeakMap();
+let timers = new WeakMap();
 
-async function loadMedia() {
-  const res = await fetch('assets/media.json');
-  return await res.json();
+async function loadMedia(){
+  const r = await fetch('assets/media.json');
+  return r.json();
 }
 
-function setupGallery(frame, images) {
+function buildGallery(frame, images){
   const track = document.createElement('div');
   track.className = 'media-track';
 
-  images.forEach(url => {
+  images.forEach(url=>{
     const item = document.createElement('div');
     item.className = 'media-item';
-    item.style.backgroundImage = 'url(' + url + ')';
+    item.style.backgroundImage = 'url('+url+')';
     track.appendChild(item);
   });
 
   frame.appendChild(track);
 
   let index = 0;
-
-  function autoScroll() {
-    index = (index + 1) % images.length;
-    track.scrollTo({
-      left: index * 280,
-      behavior: 'smooth'
-    });
+  function auto(){
+    index = (index+1)%images.length;
+    track.scrollTo({left:index*300,behavior:'smooth'});
   }
 
-  function resetIdle() {
-    clearInterval(idleTimers.get(track));
-    idleTimers.set(track, setInterval(autoScroll, 4500));
+  function reset(){
+    clearInterval(timers.get(track));
+    timers.set(track,setInterval(auto,4500));
   }
 
-  resetIdle();
-
-  ['mousedown', 'wheel', 'touchstart'].forEach(evt =>
-    track.addEventListener(evt, resetIdle)
-  );
+  reset();
+  ['wheel','mousedown','touchstart'].forEach(e=>track.addEventListener(e,reset));
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded',async()=>{
   const MEDIA = await loadMedia();
-
-  document.querySelectorAll('.media-frame').forEach(frame => {
-    const type = frame.dataset.media;
-    if (MEDIA[type]) {
-      setupGallery(frame, MEDIA[type]);
-    }
+  document.querySelectorAll('.media-frame').forEach(f=>{
+    const k = f.dataset.media;
+    if(MEDIA[k]) buildGallery(f,MEDIA[k]);
   });
 });
