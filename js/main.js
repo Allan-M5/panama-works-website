@@ -1,4 +1,4 @@
-const TYPE_TEXT = 'BUILDING WORKS &middot; ROAD WORKS &middot; WATER WORKS';
+const TYPE_TEXT = 'BUILDING WORKS \u00B7 ROAD WORKS \u00B7 WATER WORKS';
 
 document.addEventListener('DOMContentLoaded', async () => {
   // TYPEWRITER
@@ -57,4 +57,5 @@ if (!window.__scrollRevealInitialized) {
     document.querySelectorAll('.animate').forEach(el => observer.observe(el));
   });
 }
+
 
