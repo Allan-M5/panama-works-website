@@ -1,90 +1,29 @@
-/* AUTO YEAR */
-const yearEl = document.getElementById("year");
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
-
-/* =========================
-   TYPEWRITER – FINAL LOGIC
-========================= */
-const typeTarget = document.getElementById("typewriter");
-const typeText = "BUILDING WORKS · ROAD WORKS · WATER WORKS";
-
-let index = 0;
-let completed = false;
-let typingInterval = null;
-
-function startTyping() {
-  if (!typeTarget) return;
-
-  clearInterval(typingInterval);
-  index = 0;
-  completed = false;
-  typeTarget.textContent = "";
-
-  typingInterval = setInterval(() => {
-    if (index < typeText.length) {
-      typeTarget.textContent += typeText.charAt(index);
-      index++;
-    } else {
-      completed = true;
-      clearInterval(typingInterval);
-    }
-  }, 120);
-}
-
-/* Start once on load */
-startTyping();
-
-/* Restart ONLY on scroll */
-let lastScrollY = window.scrollY;
-window.addEventListener("scroll", () => {
-  if (completed && Math.abs(window.scrollY - lastScrollY) > 10) {
-    startTyping();
-  }
-  lastScrollY = window.scrollY;
-});
-
-/* =========================
-   SCROLL ANIMATION
-========================= */
-const animatedElements = document.querySelectorAll(".animate");
-
-const scrollObserver = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      entry.target.classList.toggle("in-view", entry.isIntersecting);
-    });
-  },
-  { threshold: 0.35 }
-);
-
-animatedElements.forEach(el => {
-  scrollObserver.observe(el);
-});
-const HERO_IMAGES = [
-  'https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_1200/panama-works/road/panama_road_construction_17.jpg',
-  'https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_1200/panama-works/building/panama_building_construction_3.jpg',
-  'https://res.cloudinary.com/dicvwaud3/image/upload/f_auto,q_auto,w_1200/panama-works/water/panama_sewer_works_2.jpg'
-];
-
 (function heroMedia(){
   const hero = document.querySelector('.hero');
-  if(!hero) return;
+  if (!hero) return;
 
   const layer = document.createElement('div');
   layer.className = 'hero-media';
   hero.appendChild(layer);
 
-  let i = 0;
-  layer.style.backgroundImage = 'url(' + HERO_IMAGES[0] + ')';
+  fetch('assets/media.json')
+    .then(r => r.json())
+    .then(media => {
+      const images = Object.values(media).flat();
+      if (!images.length) return;
 
-  setInterval(() => {
-    i = (i + 1) % HERO_IMAGES.length;
-    layer.style.opacity = 0;
-    setTimeout(() => {
-      layer.style.backgroundImage = 'url(' + HERO_IMAGES[i] + ')';
-      layer.style.opacity = 0.6;
-    }, 600);
-  }, 7000);
+      let i = 0;
+      layer.style.backgroundSize = 'cover';
+      layer.style.backgroundPosition = 'center';
+      layer.style.backgroundImage = 'url(' + images[0] + ')';
+
+      setInterval(() => {
+        i = (i + 1) % images.length;
+        layer.style.opacity = 0;
+        setTimeout(() => {
+          layer.style.backgroundImage = 'url(' + images[i] + ')';
+          layer.style.opacity = 0.6;
+        }, 700);
+      }, 9000);
+    });
 })();

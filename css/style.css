@@ -544,3 +544,22 @@ a {
 .hero-media {
   z-index: 2;
 }
+.hero-media {
+  position: absolute;
+  top: 0;
+  right: -6%;
+  width: 56%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(18% 0, 100% 0, 82% 100%, 0% 100%);
+  opacity: 0.55;
+  z-index: 2;
+  pointer-events: none;
+}
+.hero { position: relative; }
+.hero-content { position: relative; z-index: 3; }
+.hero-media {
+  background-size: cover !important;
+  background-position: center !important;
+}
