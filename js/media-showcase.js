@@ -17,20 +17,20 @@ const MEDIA = {
 };
 
 function startSlideshows() {
-  document.querySelectorAll('.media-frame').forEach(frame => {
+  document.querySelectorAll('.media-frame').forEach(function(frame) {
     const type = frame.dataset.media;
     const images = MEDIA[type];
-    if (!images) return;
+    if (!images || !images.length) return;
 
     let index = Math.floor(Math.random() * images.length);
-    frame.style.backgroundImage = url();
+    frame.style.backgroundImage = 'url(' + images[index] + ')';
 
-    setInterval(() => {
+    setInterval(function () {
       index = (index + 1) % images.length;
-      frame.style.opacity = 0;
-      setTimeout(() => {
-        frame.style.backgroundImage = url();
-        frame.style.opacity = 0.85;
+      frame.style.opacity = '0';
+      setTimeout(function () {
+        frame.style.backgroundImage = 'url(' + images[index] + ')';
+        frame.style.opacity = '0.85';
       }, 400);
     }, 5000);
   });
