@@ -27,3 +27,27 @@
       }, 9000);
     });
 })();
+const TYPE_TEXT = 'BUILDING WORKS · ROAD WORKS · WATER WORKS';
+let typeIndex = 0;
+let typing = false;
+
+function runTypewriter() {
+  const el = document.getElementById('typewriter');
+  if (!el || typing) return;
+
+  typing = true;
+  el.textContent = '';
+  typeIndex = 0;
+
+  const timer = setInterval(() => {
+    el.textContent += TYPE_TEXT[typeIndex];
+    typeIndex++;
+    if (typeIndex >= TYPE_TEXT.length) {
+      clearInterval(timer);
+      typing = false;
+    }
+  }, 90);
+}
+
+document.addEventListener('DOMContentLoaded', runTypewriter);
+window.addEventListener('scroll', runTypewriter, { once: true });
