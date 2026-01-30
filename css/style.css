@@ -532,3 +532,15 @@ a {
   pointer-events: none;
   transition: opacity 1.5s ease;
 }
+.hero {
+  position: relative;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+}
+
+.hero-media {
+  z-index: 2;
+}
