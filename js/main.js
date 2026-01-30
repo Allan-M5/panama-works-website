@@ -59,3 +59,16 @@ if (!window.__scrollRevealInitialized) {
 }
 
 
+document.addEventListener('DOMContentLoaded', () => {
+  const title = document.getElementById('typewriter');
+  if (!title) return;
+
+  if (document.querySelector('.hero-logo')) return;
+
+  const logo = document.createElement('img');
+  logo.src = 'https://res.cloudinary.com/dicvwaud3/image/upload/v1769780718/panama-works/logo/neoigtde0phmzcrdc53i.png';
+  logo.alt = 'Panama Works Limited Logo';
+  logo.className = 'hero-logo';
+
+  title.parentNode.insertBefore(logo, title);
+});
