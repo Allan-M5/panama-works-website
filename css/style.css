@@ -606,3 +606,19 @@ a {
   0%   { transform: scale(1) translateX(0); }
   100% { transform: scale(1.15) translateX(-6%); }
 }
+.hero-logo {
+  max-width: 160px;
+  margin-bottom: 1.4rem;
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
+}
+.animate {
+  opacity: 0;
+  transform: translateY(26px) scale(0.96);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.animate.in-view,
+.animate:hover {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
