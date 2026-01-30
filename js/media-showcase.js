@@ -1,39 +1,52 @@
-const MEDIA = {
-  building: [
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763954/panama-works/building/panama_building_construction_1.jpg',
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763951/panama-works/building/panama_building_construction_2.jpg',
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763948/panama-works/building/panama_building_construction_3.jpg'
-  ],
-  road: [
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763955/panama-works/road/panama_road_construction_1.jpg',
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763986/panama-works/road/panama_road_construction_9.jpg',
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763984/panama-works/road/panama_road_construction_8.jpg'
-  ],
-  water: [
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763994/panama-works/water/panama_sewer_works_1.jpg',
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763992/panama-works/water/panama_facility_installation3.jpg',
-    'https://res.cloudinary.com/dicvwaud3/image/upload/v1769763988/panama-works/water/panama_facility_installation.jpg'
-  ]
-};
+let idleTimers = new WeakMap();
 
-function startSlideshows() {
-  document.querySelectorAll('.media-frame').forEach(function(frame) {
-    const type = frame.dataset.media;
-    const images = MEDIA[type];
-    if (!images || !images.length) return;
-
-    let index = Math.floor(Math.random() * images.length);
-    frame.style.backgroundImage = 'url(' + images[index] + ')';
-
-    setInterval(function () {
-      index = (index + 1) % images.length;
-      frame.style.opacity = '0';
-      setTimeout(function () {
-        frame.style.backgroundImage = 'url(' + images[index] + ')';
-        frame.style.opacity = '0.85';
-      }, 400);
-    }, 5000);
-  });
+async function loadMedia() {
+  const res = await fetch('assets/media.json');
+  return await res.json();
 }
 
-document.addEventListener('DOMContentLoaded', startSlideshows);
+function setupGallery(frame, images) {
+  const track = document.createElement('div');
+  track.className = 'media-track';
+
+  images.forEach(url => {
+    const item = document.createElement('div');
+    item.className = 'media-item';
+    item.style.backgroundImage = 'url(' + url + ')';
+    track.appendChild(item);
+  });
+
+  frame.appendChild(track);
+
+  let index = 0;
+
+  function autoScroll() {
+    index = (index + 1) % images.length;
+    track.scrollTo({
+      left: index * 280,
+      behavior: 'smooth'
+    });
+  }
+
+  function resetIdle() {
+    clearInterval(idleTimers.get(track));
+    idleTimers.set(track, setInterval(autoScroll, 4500));
+  }
+
+  resetIdle();
+
+  ['mousedown', 'wheel', 'touchstart'].forEach(evt =>
+    track.addEventListener(evt, resetIdle)
+  );
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const MEDIA = await loadMedia();
+
+  document.querySelectorAll('.media-frame').forEach(frame => {
+    const type = frame.dataset.media;
+    if (MEDIA[type]) {
+      setupGallery(frame, MEDIA[type]);
+    }
+  });
+});
